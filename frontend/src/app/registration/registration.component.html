@@ -1,0 +1,27 @@
+<div class="row" *ngIf="registerForm">
+  <div class="col-sm-12">
+    <mat-card>
+      <mat-card-title>Register</mat-card-title>
+      <mat-card-content>
+        <form class="registration-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <p *ngFor="let field of formFields">
+            <app-password-field
+              [form]="registerForm"
+              [field]="field"
+              [formControlName]="field.name"
+              *ngIf="field.name === 'password'"
+            ></app-password-field>
+            <mat-form-field *ngIf="field.name !== 'password'">
+              <input [required]="field.required" [type]="field.type" matInput [placeholder]="field.label" [formControlName]="field.name">
+              <app-error [form]="registerForm" [field]="field"></app-error>
+            </mat-form-field>
+          </p>
+
+          <div class="button">
+            <button type="submit" [disabled]="registerForm.invalid" mat-button>Login</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

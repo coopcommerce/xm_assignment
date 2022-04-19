@@ -1,0 +1,39 @@
+
+<!-- LEFT THE SOLUTION FOR ALL ERRORS TO BE DISPLAYED USING HASERROR WHICH IS A CLEANER APPROACH -->
+<!-- <mat-error *ngIf="form.get(field.name)?.hasError('required') && form.get(field.name)?.touched">
+  This field is required.
+</mat-error>
+<ng-container *ngFor="let err of field.validations">
+
+  <mat-error *ngIf="
+    form.get(field.name)?.hasError('pattern') &&
+    form.get(field.name)?.touched
+  ">{{err.message}}</mat-error>
+
+  <mat-error *ngIf="
+    !form.get(field.name)?.hasError('pattern') &&
+    form.get(field.name)?.hasError(err.name) &&
+    form.get(field.name)?.touched"
+  >{{err.message}}</mat-error>
+
+</ng-container> -->
+
+
+<div *ngFor="let error of form.get(field.name)?.errors|keyvalue|slice:0:1">
+  <mat-error *ngIf="error.key === 'required' && form.get(field.name)?.touched">
+    This field is required.
+  </mat-error>
+  <ng-container *ngFor="let err of field.validations">
+
+    <mat-error *ngIf="
+      error.key === 'pattern' &&
+      form.get(field.name)?.touched
+    ">{{err.message}}</mat-error>
+
+    <mat-error *ngIf="
+      error.key !== 'pattern' &&
+      form.get(field.name)?.hasError(err.name) &&
+      form.get(field.name)?.touched"
+    >{{err.message}}</mat-error>
+  </ng-container>
+</div>
