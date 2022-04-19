@@ -15,7 +15,7 @@ export class ErrorIntercept implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
       return next.handle(request).pipe(
         catchError((response: HttpErrorResponse) => {
-          // Could catch some errors and preformat them
+          // Could catch some errors and preformat them so that errors are presented in a consistent way in the application
           return throwError(response);
         })
       );
