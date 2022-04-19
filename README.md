@@ -1,8 +1,10 @@
 To run the backend:
+--------------------------------
 1) Navigate into the backend directory and run npm install
 2) run npm run dev
 
 To run the frontend:
+--------------------------------
 1) Navigate into the frontend directory and run npm install
 2) run ng serve
 
